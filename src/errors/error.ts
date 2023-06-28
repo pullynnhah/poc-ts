@@ -1,29 +1,36 @@
 import { ApplicationError } from "../protocols/error.protocol";
 
-export function usernameExistsError(): ApplicationError {
+export const usernameExistsError = (): ApplicationError => {
   return {
     name: "UsernameExistsError",
     message: "Username already in use",
   };
-}
+};
 
-export function authError(): ApplicationError {
+export const authError = (): ApplicationError => {
   return {
     name: "AuthError",
     message: "Username or password are incorrect",
   };
-}
+};
 
-export function noTokenError(): ApplicationError {
+export const noTokenError = (): ApplicationError => {
   return {
     name: "NoTokenError",
     message: "You must have a token",
   };
-}
+};
 
-export function notFoundError(): ApplicationError {
+export const notFoundError = (): ApplicationError => {
   return {
     name: "NotFoundError",
     message: "No result for this search",
   };
-}
+};
+
+export const validationError = (errors): ApplicationError => {
+  return {
+    name: "ValidationError",
+    message: errors,
+  };
+};
