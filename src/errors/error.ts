@@ -28,7 +28,7 @@ export const notFoundError = (): ApplicationError => {
   };
 };
 
-export const validationError = (errors): ApplicationError => {
+export const validationError = (errors: string[]): ApplicationError => {
   return {
     name: "ValidationError",
     message: errors,

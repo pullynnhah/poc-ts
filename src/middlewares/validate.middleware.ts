@@ -7,7 +7,6 @@ const validate =
     const validation = schema.validate(req.body, { abortEarly: false });
     if (validation.error) {
       const errors = validation.error.details.map(err => err.message);
-      console.log(errors);
       throw validationError(errors);
     } else next();
   };
