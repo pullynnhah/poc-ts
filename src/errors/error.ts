@@ -1,36 +1,29 @@
 import { ApplicationError } from "../protocols/error.protocol";
 
-export function duplicatedUsernameError(): ApplicationError {
+export function usernameExistsError(): ApplicationError {
   return {
-    name: "DuplicatedUsernameError",
-    message: "There is already someone with that username",
+    name: "UsernameExistsError",
+    message: "Username already in use",
   };
 }
 
-export function invalidCredentialsError(): ApplicationError {
+export function authError(): ApplicationError {
   return {
-    name: "InvalidCredentialsError",
-    message: "username or password are incorrect",
+    name: "AuthError",
+    message: "Username or password are incorrect",
+  };
+}
+
+export function noTokenError(): ApplicationError {
+  return {
+    name: "NoTokenError",
+    message: "You must have a token",
   };
 }
 
 export function notFoundError(): ApplicationError {
   return {
     name: "NotFoundError",
-    message: "No result for this search!",
-  };
-}
-
-export function unauthorizedAccess(): ApplicationError {
-  return {
-    name: "UnauthorizedAccess",
-    message: "You don't have access",
-  };
-}
-
-export function noTokenAccess(): ApplicationError {
-  return {
-    name: "UnauthorizedAccess",
-    message: "You must have a token",
+    message: "No result for this search",
   };
 }
