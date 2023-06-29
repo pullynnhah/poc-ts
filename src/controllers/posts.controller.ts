@@ -35,4 +35,16 @@ const getReplies = async (req: AuthRequest, res: Response) => {
   res.send(posts);
 };
 
-export const postsController = { addPost, addReply, getPosts, getPost, getReplies };
+const likePost = async (req: AuthRequest, res: Response) => {
+  const { postId } = req.params;
+  await postsService.like("post", Number(postId));
+  res.sendStatus(StatusCodes.NO_CONTENT);
+};
+
+const likeReply = async (req: AuthRequest, res: Response) => {
+  const { replyId } = req.params;
+  await postsService.like("reply", Number(replyId));
+  res.sendStatus(StatusCodes.NO_CONTENT);
+};
+
+export const postsController = { addPost, addReply, getPosts, getPost, getReplies, likePost, likeReply };

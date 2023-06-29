@@ -84,10 +84,20 @@ const getReplies = async (id: number) => {
     },
   });
 };
+
+const like = (table: string, id: number) => {
+  return prisma[table].update({
+    where: { id },
+    data: {
+      likes: { increment: 1 },
+    },
+  });
+};
+
 const search = (table: string, id: number) => {
   return prisma[table].findUnique({
     where: { id },
   });
 };
 
-export const postsRepository = { addPost, addReply, getPosts, getPost, getReplies, search };
+export const postsRepository = { addPost, addReply, getPosts, getPost, getReplies, like, search };

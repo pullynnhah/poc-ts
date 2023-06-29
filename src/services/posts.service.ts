@@ -26,9 +26,13 @@ const getReplies = (id: number) => {
   return postsRepository.getReplies(id);
 };
 
+const like = (table: string, id: number) => {
+  return postsRepository.like(table, id);
+};
+
 const checkUser = async (id: number) => {
   const user = await postsRepository.search("user", id);
   if (!user) throw userNotFoundError();
 };
 
-export const postsService = { addPost, addReply, getPosts, getReplies, getPost };
+export const postsService = { addPost, addReply, getPosts, getReplies, like, getPost };
