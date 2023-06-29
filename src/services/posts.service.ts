@@ -26,7 +26,13 @@ const getReplies = (id: number) => {
   return postsRepository.getReplies(id);
 };
 
-const like = (table: string, id: number) => {
+const like = async (table: string, id: number) => {
+  const errors = {
+    post: postNotFoundError(),
+    reply: replyNotFoundError(),
+  };
+  const item = await postsRepository.search(table, id);
+  if (!item) throw errors[table];
   return postsRepository.like(table, id);
 };
 
@@ -37,8 +43,8 @@ const checkUser = async (id: number) => {
 
 const deleteItem = async (table: string, id: number) => {
   const errors = {
-    post: postNotFoundError,
-    reply: replyNotFoundError,
+    post: postNotFoundError(),
+    reply: replyNotFoundError(),
   };
   const item = await postsRepository.search(table, id);
   if (!item) throw errors[table];
