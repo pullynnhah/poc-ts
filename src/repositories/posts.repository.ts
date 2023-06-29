@@ -100,4 +100,8 @@ const search = (table: string, id: number) => {
   });
 };
 
-export const postsRepository = { addPost, addReply, getPosts, getPost, getReplies, like, search };
+const deleteItem = (table: string, id: number) => {
+  return prisma[table].delete({ where: { id } });
+};
+
+export const postsRepository = { addPost, addReply, getPosts, getPost, getReplies, like, search, deleteItem };

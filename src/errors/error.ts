@@ -38,10 +38,16 @@ export const userNotFoundError = (): ApplicationError => {
 export const postNotFoundError = (): ApplicationError => {
   return {
     name: "PostNotFoundError",
-    message: "The post you are trying to reply to doesn't exist",
+    message: "Post doesn't exist",
   };
 };
 
+export const replyNotFoundError = (): ApplicationError => {
+  return {
+    name: "ReplyNotFoundError",
+    message: "Reply doesn't exist",
+  };
+};
 export const notFoundError = (): ApplicationError => {
   return {
     name: "NotFoundError",

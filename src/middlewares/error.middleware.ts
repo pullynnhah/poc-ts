@@ -11,7 +11,12 @@ export const errorHandler = (error: ApplicationError, req: Request, res: Respons
     error.name === "JsonWebTokenError"
   )
     res.status(StatusCodes.UNAUTHORIZED);
-  if (error.name === "NotFoundError" || error.name === "UserNotFoundError" || error.name === "PostNotFoundError")
+  if (
+    error.name === "NotFoundError" ||
+    error.name === "UserNotFoundError" ||
+    error.name === "PostNotFoundError" ||
+    error.name === "ReplyNotFoundError"
+  )
     res.status(StatusCodes.NOT_FOUND);
   if (error.name === "ValidationError") res.status(StatusCodes.UNPROCESSABLE_ENTITY);
   res.send({ error: error.message });

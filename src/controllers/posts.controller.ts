@@ -47,4 +47,25 @@ const likeReply = async (req: AuthRequest, res: Response) => {
   res.sendStatus(StatusCodes.NO_CONTENT);
 };
 
-export const postsController = { addPost, addReply, getPosts, getPost, getReplies, likePost, likeReply };
+const deletePost = async (req: AuthRequest, res: Response) => {
+  const { postId } = req.params;
+  await postsService.deleteItem("post", Number(postId));
+  res.sendStatus(StatusCodes.NO_CONTENT);
+};
+
+const deleteReply = async (req: AuthRequest, res: Response) => {
+  const { replyId } = req.params;
+  await postsService.deleteItem("reply", Number(replyId));
+  res.sendStatus(StatusCodes.NO_CONTENT);
+};
+export const postsController = {
+  addPost,
+  addReply,
+  getPosts,
+  getPost,
+  getReplies,
+  likePost,
+  likeReply,
+  deletePost,
+  deleteReply,
+};

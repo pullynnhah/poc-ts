@@ -1,6 +1,6 @@
 import { Post, Reply } from "../protocols/post.protocol";
 import { postsRepository } from "../repositories/posts.repository";
-import { postNotFoundError, userNotFoundError } from "../errors/error";
+import { postNotFoundError, replyNotFoundError, userNotFoundError } from "../errors/error";
 
 const addPost = async (data: Post) => {
   await checkUser(data.authorId);
@@ -35,4 +35,14 @@ const checkUser = async (id: number) => {
   if (!user) throw userNotFoundError();
 };
 
-export const postsService = { addPost, addReply, getPosts, getReplies, like, getPost };
+const deleteItem = async (table: string, id: number) => {
+  const errors = {
+    post: postNotFoundError,
+    reply: replyNotFoundError,
+  };
+  const item = await postsRepository.search(table, id);
+  if (!item) throw errors[table];
+
+  return postsRepository.deleteItem(table, id);
+};
+export const postsService = { addPost, addReply, getPosts, getReplies, like, getPost, deleteItem };
