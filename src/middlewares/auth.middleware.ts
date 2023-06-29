@@ -13,5 +13,6 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
   const { authorId } = jwt.verify(token, process.env.JWT_SECRET) as JWTPayload;
   if (!authorId) throw invalidTokenError();
   req.authorId = authorId;
+
   next();
 };

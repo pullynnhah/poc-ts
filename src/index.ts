@@ -6,7 +6,7 @@ import express, { Express, json } from "express";
 import authRoute from "./routes/auth.route";
 import { connectDb } from "./config/database";
 import { errorHandler } from "./middlewares/error.middleware";
-import commentsRoute from "./routes/comments.route";
+import commentsRoute from "./routes/posts.route";
 
 const app = express();
 const { PORT } = process.env;

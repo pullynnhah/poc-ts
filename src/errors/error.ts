@@ -35,10 +35,10 @@ export const userNotFoundError = (): ApplicationError => {
   };
 };
 
-export const commentNotFoundError = (): ApplicationError => {
+export const postNotFoundError = (): ApplicationError => {
   return {
-    name: "CommentNotFoundError",
-    message: "The comment you are trying to reply doesn't exist",
+    name: "PostNotFoundError",
+    message: "The post you are trying to reply to doesn't exist",
   };
 };
 
