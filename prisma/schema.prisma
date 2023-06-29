@@ -16,13 +16,14 @@ model User {
 }
 
 model Comment {
-  id              Int      @id @default(autoincrement())
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  content         String
-  authorId        Int
-  author          User     @relation(fields: [authorId], references: [id])
-  parentCommentId Int?     @unique
-  parentComment   Comment? @relation("CommentHistory", fields: [parentCommentId], references: [id])
-  childComment    Comment? @relation("CommentHistory")
+  id               Int       @id @default(autoincrement())
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  content          String
+  likes            Int       @default(0)
+  authorId         Int
+  author           User      @relation(fields: [authorId], references: [id])
+  parentCommentId  Int?
+  parentComment    Comment?  @relation("CommentHistory", fields: [parentCommentId], references: [id])
+  childrenComments Comment[] @relation("CommentHistory")
 }

@@ -6,6 +6,7 @@ import express, { Express, json } from "express";
 import authRoute from "./routes/auth.route";
 import { connectDb } from "./config/database";
 import { errorHandler } from "./middlewares/error.middleware";
+import commentsRoute from "./routes/comments.route";
 
 const app = express();
 const { PORT } = process.env;
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(json());
 
 app.use(authRoute);
+app.use(commentsRoute);
 app.use(errorHandler);
 
 function init(): Promise<Express> {

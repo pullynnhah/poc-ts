@@ -33,9 +33,9 @@ const validatePassword = async (password: string, userPassword: string): Promise
   if (!bcrypt.compareSync(password, userPassword)) throw authError();
 };
 
-const generateToken = async (userId: number): Promise<Token> => {
+const generateToken = async (authorId: number): Promise<Token> => {
   return {
-    token: jwt.sign({ userId }, process.env.JWT_SECRET),
+    token: jwt.sign({ authorId }, process.env.JWT_SECRET),
   };
 };
 

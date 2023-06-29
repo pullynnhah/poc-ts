@@ -21,6 +21,12 @@ export const noTokenError = (): ApplicationError => {
   };
 };
 
+export const invalidTokenError = (): ApplicationError => {
+  return {
+    name: "InvalidTokenError",
+    message: "Your token is invalid",
+  };
+};
 export const notFoundError = (): ApplicationError => {
   return {
     name: "NotFoundError",
