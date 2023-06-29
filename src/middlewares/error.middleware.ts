@@ -6,7 +6,8 @@ export const errorHandler = (error: ApplicationError, req: Request, res: Respons
   if (error.name === "UsernameExistsError") res.status(StatusCodes.CONFLICT);
   if (error.name === "AuthError" || error.name === "NoTokenError" || error.name === "InvalidTokenError")
     res.status(StatusCodes.UNAUTHORIZED);
-  if (error.name === "NotFoundError") res.status(StatusCodes.NOT_FOUND);
+  if (error.name === "NotFoundError" || error.name === "UserNotFoundError" || error.name === "CommentNotFoundError")
+    res.status(StatusCodes.NOT_FOUND);
   if (error.name === "ValidationError") res.status(StatusCodes.UNPROCESSABLE_ENTITY);
   res.send({ error: error.message });
 };

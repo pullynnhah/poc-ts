@@ -8,4 +8,11 @@ const addComment = (data: NewComment) => {
 const replyComment = async (data: ReplyComment) => {
   return prisma.comment.create({ data });
 };
-export const commentRepository = { addComment, replyComment };
+
+const search = (table: string, id: number) => {
+  return prisma[table].findUnique({
+    where: { id },
+  });
+};
+
+export const commentRepository = { addComment, replyComment, search };

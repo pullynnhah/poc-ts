@@ -27,6 +27,21 @@ export const invalidTokenError = (): ApplicationError => {
     message: "Your token is invalid",
   };
 };
+
+export const userNotFoundError = (): ApplicationError => {
+  return {
+    name: "UserNotFoundError",
+    message: "This user doesn't exist or was removed",
+  };
+};
+
+export const commentNotFoundError = (): ApplicationError => {
+  return {
+    name: "CommentNotFoundError",
+    message: "The comment you are trying to reply doesn't exist",
+  };
+};
+
 export const notFoundError = (): ApplicationError => {
   return {
     name: "NotFoundError",
