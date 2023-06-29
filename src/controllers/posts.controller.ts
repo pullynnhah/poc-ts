@@ -23,4 +23,16 @@ const getPosts = async (req: AuthRequest, res: Response) => {
   res.send(posts);
 };
 
-export const postsController = { addPost, addReply, getPosts };
+const getPost = async (req: AuthRequest, res: Response) => {
+  const { postId } = req.params;
+  const posts = await postsService.getPost(Number(postId));
+  res.send(posts);
+};
+
+const getReplies = async (req: AuthRequest, res: Response) => {
+  const { postId } = req.params;
+  const posts = await postsService.getReplies(Number(postId));
+  res.send(posts);
+};
+
+export const postsController = { addPost, addReply, getPosts, getPost, getReplies };

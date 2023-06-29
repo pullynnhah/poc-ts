@@ -18,9 +18,17 @@ const getPosts = () => {
   return postsRepository.getPosts();
 };
 
+const getPost = (id: number) => {
+  return postsRepository.getPost(id);
+};
+
+const getReplies = (id: number) => {
+  return postsRepository.getReplies(id);
+};
+
 const checkUser = async (id: number) => {
   const user = await postsRepository.search("user", id);
   if (!user) throw userNotFoundError();
 };
 
-export const postsService = { addPost, addReply, getPosts };
+export const postsService = { addPost, addReply, getPosts, getReplies, getPost };

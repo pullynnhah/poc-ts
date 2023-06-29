@@ -32,15 +32,62 @@ const getPosts = async () => {
       },
     },
     orderBy: {
-      createdAt: "asc",
+      createdAt: "desc",
     },
   });
 };
 
+const getPost = async (id: number) => {
+  const select = {
+    id: true,
+    content: true,
+    likes: true,
+    createdAt: true,
+    updatedAt: true,
+    author: {
+      select: {
+        username: true,
+        image: true,
+      },
+    },
+  };
+
+  return prisma.post.findUnique({
+    where: { id },
+    select: {
+      ...select,
+      replies: {
+        select,
+      },
+    },
+  });
+};
+
+const getReplies = async (id: number) => {
+  return prisma.reply.findMany({
+    where: { postId: id },
+    select: {
+      id: true,
+      content: true,
+      likes: true,
+      createdAt: true,
+      updatedAt: true,
+      author: {
+        select: {
+          username: true,
+          image: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+};
 const search = (table: string, id: number) => {
   return prisma[table].findUnique({
     where: { id },
   });
 };
 
-export const postsRepository = { addPost, addReply, getPosts, search };
+export const postsRepository = { addPost, addReply, getPosts, getPost, getReplies, search };

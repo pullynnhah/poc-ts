@@ -7,6 +7,8 @@ import { authenticateToken } from "../middlewares/auth.middleware";
 const router = Router();
 router.post("/posts", authenticateToken, validate(contentSchema), postsController.addPost);
 router.get("/posts", postsController.getPosts);
+router.get("/posts/:postId", postsController.getPost);
 router.post("/reply/:postId", authenticateToken, validate(contentSchema), postsController.addReply);
+router.get("/reply/:postId", postsController.getReplies);
 
 export default router;
