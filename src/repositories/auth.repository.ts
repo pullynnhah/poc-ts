@@ -1,5 +1,5 @@
-import { prisma } from "../config/database";
-import { SignupUser } from "../protocols/user.protocol";
+import { prisma } from "../config";
+import { SignupUser } from "../protocols";
 
 const searchUser = (username: string) => {
   return prisma.user.findUnique({

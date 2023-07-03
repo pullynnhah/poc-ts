@@ -1,7 +1,9 @@
-import { AuthRequest, JWTPayload } from "../protocols/auth.protocol";
-import { NextFunction, Response } from "express";
-import { invalidTokenError, noTokenError } from "../errors/error";
 import * as jwt from "jsonwebtoken";
+
+import { AuthRequest, JWTPayload } from "../protocols";
+import { NextFunction, Response } from "express";
+
+import { noTokenError } from "../errors";
 
 export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction): void => {
   const authHeader = req.header("Authorization");
@@ -11,7 +13,6 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
   if (!token) throw noTokenError();
 
   const { authorId } = jwt.verify(token, process.env.JWT_SECRET) as JWTPayload;
-  if (!authorId) throw invalidTokenError();
   req.authorId = authorId;
 
   next();

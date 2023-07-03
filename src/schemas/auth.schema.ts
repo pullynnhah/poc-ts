@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { SigninUser, SignupUser } from "../protocols/user.protocol";
+import { SigninUser, SignupUser } from "../protocols";
 
 const signupSchema = Joi.object<SignupUser>({
   username: Joi.string().required(),

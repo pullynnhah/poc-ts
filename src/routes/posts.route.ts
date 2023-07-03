@@ -1,19 +1,15 @@
 import { Router } from "express";
-import { postsController } from "../controllers/posts.controller";
-import { contentSchema } from "../schemas/post.schema";
-import { validate } from "../middlewares/validate.middleware";
-import { authenticateToken } from "../middlewares/auth.middleware";
 
-const router = Router();
-router.post("/posts", authenticateToken, validate(contentSchema), postsController.addPost);
-router.get("/posts", postsController.getPosts);
+import { contentSchema } from "../schemas";
+import { postsController } from "../controllers";
+import { validate, authenticateToken } from "../middlewares";
 
-router.patch("/posts/:postId", postsController.likePost);
-router.get("/posts/:postId", postsController.getPost);
-router.delete("/posts/:postId", postsController.deletePost);
+const postRouter = Router();
+postRouter.post("/", authenticateToken, validate(contentSchema), postsController.addPost);
+postRouter.get("/", postsController.getPosts);
 
-router.post("/reply/:postId", authenticateToken, validate(contentSchema), postsController.addReply);
-router.get("/reply/:postId", postsController.getReplies);
-router.patch("/reply/:replyId", postsController.likeReply);
-router.delete("/reply/:replyId", authenticateToken, postsController.deleteReply);
-export default router;
+postRouter.patch("/like/:postId", postsController.likePost);
+postRouter.get("/:postId", postsController.getPost);
+postRouter.delete("/:postId", postsController.deletePost);
+
+export { postRouter };

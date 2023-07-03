@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { validationError } from "../errors/error";
+import { schemaValidationError } from "../errors";
 import Joi from "joi";
 
 const validate =
@@ -8,7 +8,7 @@ const validate =
     const validation = schema.validate(req.body, { abortEarly: false });
     if (validation.error) {
       const errors = validation.error.details.map(err => err.message);
-      throw validationError(errors);
+      throw schemaValidationError(errors);
     } else next();
   };
 

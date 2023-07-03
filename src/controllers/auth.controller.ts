@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 
-import { SigninUser, SignupUser } from "../protocols/user.protocol";
-import { authService } from "../services/auth.service";
+import { SigninUser, SignupUser } from "../protocols";
+import { authService } from "../services";
 
 const signup = async (req: Request, res: Response) => {
   const body = req.body as SignupUser;

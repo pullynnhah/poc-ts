@@ -3,9 +3,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { User } from "@prisma/client";
 
-import { SigninUser, SignupUser, Token } from "../protocols/user.protocol";
-import { authError, usernameExistsError } from "../errors/error";
-import { authRepository } from "../repositories/auth.repository";
+import { SigninUser, SignupUser, Token } from "../protocols";
+import { authError, usernameExistsError } from "../errors";
+import { authRepository } from "../repositories";
 
 const signup = async (data: SignupUser): Promise<User> => {
   const user = await authRepository.searchUser(data.username);
